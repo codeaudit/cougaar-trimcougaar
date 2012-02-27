@@ -1,0 +1,51 @@
+<html>
+<head><title>Trim Cougaar Installation</title></head>
+<body>
+<h1>Trim Cougaar Installation</h1>
+<p>
+<h2>Overview:<a name="Overview"></a></h2>
+Trim Cougaar contains a subset of a full Cougaar install. It contains only the
+files needed to create a distributed agent runtime infrastructure and 
+not extra files used by Logistics Applications or Ultralog robustness and
+security extensions.
+<p>
+Trim Cougaar has the same directory structure as the full Cougaar installation,
+so the top level directory can be used for COUGAAR_INSTALL_PATH and CIP.
+<p>
+Trim Cougaar is an eclipse project and is configured so that Cougaar applications
+projects can depend on the TrimCougaar project. The recommended eclipse workspace has the form:
+<br>
+<code>MyWorkspace </code><br>
+&nbsp;&nbsp;<code>TrimCougaar </code><br>
+&nbsp;&nbsp;<code>hello (depends on TrimCougaar) </code><br>
+&nbsp;&nbsp;<code>MyNewCougaarAppl (depends on TrimCougaar) </code><br>
+ <p>
+The projects in the Cougaar Tutorials depend on having checked out Trim Cougaar
+in the same workspace. 
+<p>
+<h2>Quick Start:<a name="quickStart"></a></h2>
+A Unix bash commands to:
+<ol>
+<li>Create a workspace directory</li>
+<li>Checkout Trim Cougaar and Hello World projects from Cougaar CVS:</li>
+<li>Setup the Unix environment variables and path. </li>
+<li>Build and run the hello application using ant. </li>
+</ol>
+<code>export WORK_SPACE=`pwd`/cougaar-ws</code><br>
+<code>mkdir $WORK_SPACE</code><br>
+<code>cd $WORK_SPACE</code><br>
+<code>cvs -d :pserver:anonymous@cvs.cougaar.org:/cvsroot/tutorials co TrimCougaar</code><br>
+<code>cvs -d :pserver:anonymous@cvs.cougaar.org:/cvsroot/tutorials co hello</code><br>
+<code>export COUGAAR_INSTALL_PATH=$WORK_SPACE/TrimCougaar</code><br>
+<code>export PATH=$COUGAAR_INSTALL_PATH/bin:$PATH</code><br>
+<code>cd $WORK_SPACE/hello</code><br>
+<code>export COUGAAR_SOCIETY_PATH=`pwd`</code><br>
+<code>export COUGAAR_RUNTIME_PATH=$COUGAAR_SOCIETY_PATH/run</code><br>
+<code>ant  helloLifeCycle</code><br>
+<p>
+To run the hello application using the Unix shell script:
+<br>
+<code>cd $COUGAAR_RUNTIME_PATH</code><br>
+<code>cougaar -v $COUGAAR_SOCIETY_PATH/configs/HelloLifeCycleSociety.xml SingleNodeRuntime.xml</code><br>
+<p>
+</body>

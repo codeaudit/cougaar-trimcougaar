@@ -1,0 +1,269 @@
+<project name="TrimCougaar" basedir="." default="install">
+	
+    <description>
+    	Trim Cougaar Top level Build file.
+    	Copies 
+    </description>
+    
+ 
+	
+    <!-- ====================================================================== -->
+    
+    
+    <!-- Trim Cougaar targets                                                      -->
+    
+    
+    <!-- ====================================================================== -->
+	
+    <!-- Temp CIP location to checkout Cougaar -->
+	<property name="cougaar.install.base" value="/tmp/cip"/>
+	<property name="cougaar.install.version" value="HEAD"/>
+	<property name="cougaar.install.path" value="${cougaar.install.base}/${cougaar.install.version}/latest"/>
+	
+	<target name="getcip" description="Download the latest CIP to tmp directory">
+		<condition property="cougaar.install.base" value="/tmp/cip">
+				<not>
+					<isset property="cougaar.install.base"/>
+				</not>
+			</condition>
+		<condition property="cougaar.install.version" value="HEAD">
+				<not>
+					<isset property="cougaar.install.version"/>
+				</not>
+			</condition>
+		<echo>Running getcip.sh script with cip.base=${cougaar.install.base} and version=${cougaar.install.version}</echo>
+		<mkdir dir="${cougaar.install.base}"/>
+		<exec executable="${basedir}/bin/getcip.sh">
+			 <!--depends on curl, which is ussually in /usr/bin -->
+			 <arg value="${cougaar.install.base}"/>
+			 <arg value="${cougaar.install.version}"/>
+		</exec>
+	</target>
+	
+    <target name="update-external" description="Copy trimmed files from CIP to appropriate locations"
+		 depends="getcip" >
+    	<echo>Copying lib jars</echo>
+		<copy todir="lib" flatten="true" preservelastmodified="true">
+      		<fileset dir="${cougaar.install.path}/lib"
+            	includes="bootstrap.jar,
+      			community.jar,
+      			core.jar,
+      			datafeeds.jar,
+      			mtsstd.jar,
+      			mtslinks.jar
+      			planning.jar,
+      			profile.jar,
+      			qos.jar,
+				qrs.jar,
+      			util.jar,
+      			webserver.jar,
+      			webtomcat.jar,
+				webmicro.jar"/>
+    	</copy>
+    	<echo>Copying sys jars</echo>
+		<copy todir="sys" flatten="true" preservelastmodified="true">
+      		<fileset dir="${cougaar.install.path}/sys"
+            	includes="log4j.jar,
+      			servlet.jar,
+      			tomcat_40.jar,
+      			xercesImpl.jar,
+      			xml-apis.jar"/>
+    	</copy>
+    	<echo>Copying configs/common files</echo>
+		<copy todir="configs/common" flatten="true" preservelastmodified="true">
+      		<fileset dir="${cougaar.install.path}/configs/common"
+            	includes="DefaultAgent.xml,
+      			NodeAgent.xsl,
+      			SimpleAgent.xsl,
+      			make_society.xsl,
+      			society.xsl,
+      			util.xsl"/>
+    	</copy>
+       	<echo>Copying webtomcat files</echo>
+    	<copy todir="webtomcat" flatten="false" preservelastmodified="true">
+          	<fileset dir="${cougaar.install.path}/webtomcat"
+                includes="data/conf/modules.xml,
+          		data/conf/server.xml,
+          		data/conf/tomcat-users.xml,
+         		data/webapps/ROOT/WEB-INF/server-config.wsdd,
+          		data/webapps/ROOT/WEB-INF/web.xml,
+          		data/work/README"/>
+        </copy>
+       	<echo>Copying bin files</echo>
+    	<!-- not getcip.sh, because we get src files which is not the default -->
+    	<copy todir="bin" flatten="false" preservelastmodified="true">
+          	<fileset dir="${cougaar.install.path}/bin"
+                includes="cougaar,
+          		cougaar.bat"/>
+        </copy>
+    	<echo>Copying ant helper files</echo>
+    	<!-- TODO include cougaar-app-project-import.xml  -->
+    	<copy todir="build/data" flatten="false" preservelastmodified="true">
+          	<fileset dir="${cougaar.install.path}/build/data"
+                includes="ant-contrib-1.0b3.jar"/>
+        </copy>
+		<echo>Copying tools demo</echo>
+    	<copy todir="lib" flatten="false" preservelastmodified="true">
+          	<fileset dir="${cougaar.install.path}/tools/lib"
+                includes="tools.jar"/>
+        </copy>
+		<echo message="Zipping source files" />
+		<foreach target="zip-project-src-files" param="project" 
+			list="bootstrap,community,core,mtslinks,mtsstd,planning,profile,qos,qrs,tools,util,webmicro,webserver,webtomcat"/>
+
+    </target>
+	
+	<!-- define ant-contrib extenstions to ANT. Needed because Ant 1.6 does not have For loops-->
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${basedir}/build/data/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+
+	<target name="zip-cougaar-src-files" description="creates zip of sources for cougaar sub-projects">
+		<echo message="zipping source files" />
+		<foreach target="zip-project-src-files" param="project" 
+			list="bootstrap,community,core,mtslinks,mtsstd,planning,profile,qos,qrs,tools,util,webmicro,webserver,webtomcat"/>
+	</target>
+	
+	<target name="zip-project-src-files" description="Make zip files of Cougaar sources for debugging " >
+		<echo message="zipping sources for project ${project}" />
+		<zip destfile="${basedir}/src/${project}.zip" basedir="${cougaar.install.path}/${project}/src" />  
+	</target>
+
+
+
+   
+    <!-- ====================================================================== -->
+    
+    
+    <!-- Generic Top Level Targets  (Not really Applicable)                      -->
+    
+    
+    <!-- ====================================================================== -->
+    
+    <target name="all" description="Complete build, jar and report generation"
+        depends="init, jar"/>
+    
+    <target name="nightly" description="The target called by the nightly build"
+        depends="init, srcclean, clean, jar, regression"/>
+    
+    
+    <!-- ====================================================================== -->
+    
+    
+    <!-- Extra Cleaning Targets                                                 -->
+    
+    
+    <target name="srcclean"
+        description="Cleans out cvs and emacs temporary files">
+        <delete>
+            <fileset dir="${bundle.root}" includes="**/*~" defaultexcludes="no"/>
+            <fileset dir="${bundle.root}" includes="**/.#*" defaultexcludes="no"/>
+            <fileset dir="${bundle.root}" includes="**/*.flc" defaultexcludes="no"/>
+        </delete>
+    </target>
+    
+    
+    <!-- ====================================================================== -->
+    
+    
+    <!-- Code Generate, Compile, RMIC and Jar Targets                           -->
+    
+    
+    <!-- ====================================================================== -->
+    
+    <target name="jar" description="Create all of the .jar files" depends="init">
+        <echo>Building all the modules:</echo>
+        <call-builds target="jar"/>
+    </target>
+    
+    <target name="clean"
+        description="Clean up the results of the default target (jar)"
+        depends="init">
+        <call-builds target="clean"/>
+    </target>
+    
+    <target name="regression"
+        description="Run the regression tests"
+    	depends="init">
+        <call-builds target="regression"/>
+    </target>
+   
+   
+    <target name="install" description="Copy jars to common lib directory"
+		depends="jar">
+		<echo>Copying jars</echo>
+		<mkdir dir="lib"/>
+		<copy todir="lib" flatten="true" preservelastmodified="true">
+      		<fileset dir="${bundle.root}"
+               includes="demo-ping/lib/demo-ping.jar,
+                         demo-hello/lib/demo-hellop.jar,
+                         demo-mandelbrot/lib/demo-mandelbrot.jar"/>
+    	</copy>
+	</target>
+	
+	
+    <!-- ###################################################################### -->
+    
+    
+    <!-- The Details...                                                         -->
+    
+    
+    <!-- ###################################################################### -->
+    
+    
+    <!-- ====================================================================== -->
+    
+    
+    <!-- Setup to call sub builds & reports                                     -->
+    
+    
+    <!-- ====================================================================== -->
+    
+    <macrodef name="call-builds">
+        <attribute name="target"/>
+        <element name="subant-elements" optional="true"/>
+        <sequential>
+            <subant target="@{target}" inheritall="false" failonerror="true">
+                <filelist dir="${bundle.root}"
+                    files="demo-hello/build.xml,
+                         demo-ping/build.xml,
+                         demo-mandelbrot/build.xml"/>
+                <property name="bundle.build.output" value="${bundle.run}/lib"/>
+                <subant-elements/>
+            </subant>
+        </sequential>
+    </macrodef>
+    
+   
+    
+    <!-- ====================================================================== -->
+    
+    
+    <!-- Initialization Target                                                  -->
+    
+    
+    <!-- ====================================================================== -->
+    
+    <target name="init" description="Run this before any of the other targets">
+        <!-- Find the value for the bundle.root property: -->
+        <dirname file="${ant.file}" property="ant.file.buildfilepath"/>
+        <basename file="${ant.file.buildfilepath}"
+            property="ant.file.buildfiledir"/>
+        <dirname file="${ant.file.buildfilepath}"
+            property="ant.file.buildfilepathparent"/>
+        <condition property="bundle.root" value="${ant.file.buildfilepath}">
+            <not>
+                <equals arg1="${ant.file.buildfiledir}" arg2="cougaar-trim-release"/>
+            </not>
+        </condition>
+        <condition property="bundle.root" value="${ant.file.buildfilepathparent}">
+            <equals arg1="${ant.file.buildfiledir}" arg2="cougaar-trim-release"/>
+        </condition>
+        <echo message="bundle.Root=${bundle.root}"/>
+        <!-- Load all of the other properties -->
+        <!-- loadproperties srcFile="${bundle.root}/tools/build.properties"/ -->
+    </target>
+    
+</project>
