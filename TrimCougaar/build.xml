@@ -43,7 +43,7 @@
     <target name="update-external" description="Copy trimmed files from CIP to appropriate locations"
 		 depends="getcip" >
     	<echo>Copying lib jars</echo>
-		<copy todir="lib" flatten="true" preservelastmodified="true">
+		<copy todir="lib" flatten="true" overwrite="true" preservelastmodified="true">
       		<fileset dir="${cougaar.install.path}/lib"
             	includes="bootstrap.jar,
       			community.jar,
@@ -61,7 +61,7 @@
 				webmicro.jar"/>
     	</copy>
     	<echo>Copying sys jars</echo>
-		<copy todir="sys" flatten="true" preservelastmodified="true">
+		<copy todir="sys" flatten="true"  overwrite="true" preservelastmodified="true">
       		<fileset dir="${cougaar.install.path}/sys"
             	includes="log4j.jar,
       			servlet.jar,
@@ -70,7 +70,7 @@
       			xml-apis.jar"/>
     	</copy>
     	<echo>Copying configs/common files</echo>
-		<copy todir="configs/common" flatten="true" preservelastmodified="true">
+		<copy todir="configs/common" flatten="true"  overwrite="true" preservelastmodified="true">
       		<fileset dir="${cougaar.install.path}/configs/common"
             	includes="DefaultAgent.xml,
       			NodeAgent.xsl,
@@ -80,7 +80,7 @@
       			util.xsl"/>
     	</copy>
        	<echo>Copying webtomcat files</echo>
-    	<copy todir="webtomcat" flatten="false" preservelastmodified="true">
+    	<copy todir="webtomcat" flatten="false"  overwrite="true" preservelastmodified="true">
           	<fileset dir="${cougaar.install.path}/webtomcat"
                 includes="data/conf/modules.xml,
           		data/conf/server.xml,
@@ -91,19 +91,19 @@
         </copy>
        	<echo>Copying bin files</echo>
     	<!-- not getcip.sh, because we get src files which is not the default -->
-    	<copy todir="bin" flatten="false" preservelastmodified="true">
+    	<copy todir="bin" flatten="false" overwrite="true" preservelastmodified="true">
           	<fileset dir="${cougaar.install.path}/bin"
                 includes="cougaar,
           		cougaar.bat"/>
         </copy>
     	<echo>Copying ant helper files</echo>
     	<!-- TODO include cougaar-app-project-import.xml  -->
-    	<copy todir="build/data" flatten="false" preservelastmodified="true">
+    	<copy todir="build/data" flatten="false" overwrite="true" preservelastmodified="true">
           	<fileset dir="${cougaar.install.path}/build/data"
                 includes="ant-contrib-1.0b3.jar"/>
         </copy>
 		<echo>Copying tools demo</echo>
-    	<copy todir="lib" flatten="false" preservelastmodified="true">
+    	<copy todir="lib" flatten="false"  overwrite="true" preservelastmodified="true">
           	<fileset dir="${cougaar.install.path}/tools/lib"
                 includes="tools.jar"/>
         </copy>
@@ -195,7 +195,7 @@
 		depends="jar">
 		<echo>Copying jars</echo>
 		<mkdir dir="lib"/>
-		<copy todir="lib" flatten="true" preservelastmodified="true">
+		<copy todir="lib" flatten="true"  overwrite="true" preservelastmodified="true">
       		<fileset dir="${bundle.root}"
                includes="demo-ping/lib/demo-ping.jar,
                          demo-hello/lib/demo-hellop.jar,
