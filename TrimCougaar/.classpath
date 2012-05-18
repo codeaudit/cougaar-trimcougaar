@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="lib/bootstrap.jar" sourcepath="src/bootstrap.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/community.jar" sourcepath="src/community.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/core.jar" sourcepath="src/core.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/datafeeds.jar" sourcepath="src/datafeeds.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/mtslinks.jar" sourcepath="src/mtslinks.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/mtsstd.jar" sourcepath="src/mtsstd.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/planning.jar" sourcepath="src/planning.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/profile.jar" sourcepath="src/profile.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/qos.jar" sourcepath="src/qos.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/qrs.jar" sourcepath="src/qrs.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/tools.jar" sourcepath="src/tools.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/util.jar" sourcepath="src/util.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/webmicro.jar" sourcepath="src/webmicro.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/webserver.jar" sourcepath="src/webserver.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/webtomcat.jar" sourcepath="lib/webtomcat.jar"/>
-	<classpathentry exported="true" kind="lib" path="sys/log4j.jar"/>
-	<classpathentry exported="true" kind="lib" path="sys/servlet.jar"/>
-	<classpathentry exported="true" kind="lib" path="sys/tomcat_40.jar"/>
-	<classpathentry exported="true" kind="lib" path="sys/xercesImpl.jar"/>
-	<classpathentry exported="true" kind="lib" path="sys/xml-apis.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/core"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/util"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/bootstrap"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/datafeeds"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/mtslinks"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/mtsstd"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/qos"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/qrs"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/server"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
