@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/core"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/util"/>
 	<classpathentry exported="true" kind="lib" path="lib/bootstrap.jar" sourcepath="src/bootstrap.zip"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/core"/>
 	<classpathentry exported="true" kind="lib" path="lib/community.jar" sourcepath="src/community.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/core.jar" sourcepath="src/core.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/datafeeds.jar" sourcepath="src/datafeeds.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/mtslinks.jar" sourcepath="src/mtslinks.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/mtsstd.jar" sourcepath="src/mtsstd.zip"/>
@@ -15,7 +12,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/qos.jar" sourcepath="src/qos.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/qrs.jar" sourcepath="src/qrs.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/tools.jar" sourcepath="src/tools.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/util.jar" sourcepath="src/util.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/webmicro.jar" sourcepath="src/webmicro.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/webserver.jar" sourcepath="src/webserver.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/webtomcat.jar" sourcepath="lib/webtomcat.jar"/>
