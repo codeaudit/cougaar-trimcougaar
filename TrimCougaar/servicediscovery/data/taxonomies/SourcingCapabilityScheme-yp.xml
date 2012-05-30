@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tModel>
+  <name>SourcingCapabilityScheme</name>
+  <description>Describes sourcing types</description>
+  <categoryBag>
+    <keyedReference keyName="On Demand Manufacturing" keyValue="ODM" >
+    </keyedReference>
+    <keyedReference keyName="Commercial Off the Shelf" keyValue="COTS" >
+    </keyedReference>
+  </categoryBag>
+</tModel>

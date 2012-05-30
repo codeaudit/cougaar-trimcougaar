@@ -2,8 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="lib/bootstrap.jar" sourcepath="src/bootstrap.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/core.jar" sourcepath="src/core.zip"/>
-	<classpathentry exported="true" kind="lib" path="lib/util.jar" sourcepath="src/util.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/community.jar" sourcepath="src/community.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/datafeeds.jar" sourcepath="src/datafeeds.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/mtslinks.jar" sourcepath="src/mtslinks.zip"/>
@@ -30,5 +28,10 @@
 	<classpathentry exported="true" kind="lib" path="lib/yp.jar"/>
 	<classpathentry exported="true" kind="lib" path="sys/hsqldb.jar"/>
 	<classpathentry exported="true" kind="lib" path="sys/juddi.jar"/>
+	<classpathentry exported="true" kind="lib" path="sys/icu4j.jar"/>
+	<classpathentry exported="true" kind="lib" path="sys/jms-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="sys/smack.jar"/>
+	<classpathentry exported="true" kind="lib" path="sys/SNMP4J.jar"/>
+	<classpathentry exported="true" kind="lib" path="sys/concurrent.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
