@@ -2,6 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="lib/bootstrap.jar" sourcepath="src/bootstrap.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/core.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/util.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/community.jar" sourcepath="src/community.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/datafeeds.jar" sourcepath="src/datafeeds.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/mtslinks.jar" sourcepath="src/mtslinks.zip"/>
