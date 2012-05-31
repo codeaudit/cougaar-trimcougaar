@@ -25,9 +25,9 @@
 	<classpathentry exported="true" kind="lib" path="sys/jena.jar"/>
 	<classpathentry exported="true" kind="lib" path="sys/uddi4j.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/glm.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/servicediscovery.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/servicediscovery.jar" sourcepath="src/servicediscovery.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/toolkit.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/yp.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/yp.jar" sourcepath="src/yp.zip"/>
 	<classpathentry exported="true" kind="lib" path="sys/hsqldb.jar"/>
 	<classpathentry exported="true" kind="lib" path="sys/juddi.jar"/>
 	<classpathentry exported="true" kind="lib" path="sys/icu4j.jar"/>
