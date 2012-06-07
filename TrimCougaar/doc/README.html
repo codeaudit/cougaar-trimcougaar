@@ -27,25 +27,28 @@ in the same workspace.
 A Unix bash commands to:
 <ol>
 <li>Create a workspace directory</li>
-<li>Checkout Trim Cougaar and Hello World projects from Cougaar CVS:</li>
+<li>Checkout Trim Cougaar and Hello World projects from Cougaar Git repository</li>
 <li>Setup the Unix environment variables and path. </li>
 <li>Build and run the hello application using ant. </li>
 </ol>
 <code>export WORK_SPACE=`pwd`/cougaar-ws</code><br>
 <code>mkdir $WORK_SPACE</code><br>
 <code>cd $WORK_SPACE</code><br>
-<code>cvs -d :pserver:anonymous@cvs.cougaar.org:/cvsroot/tutorials co TrimCougaar</code><br>
-<code>cvs -d :pserver:anonymous@cvs.cougaar.org:/cvsroot/tutorials co hello</code><br>
+<code>git clone http://cougaar.org/git/trimcougaar.git</code><br>
+<code>git clone http://cougaar.org/git/tutorials.git</code><br>
 <code>export COUGAAR_INSTALL_PATH=$WORK_SPACE/TrimCougaar</code><br>
 <code>export PATH=$COUGAAR_INSTALL_PATH/bin:$PATH</code><br>
-<code>cd $WORK_SPACE/hello</code><br>
+<code>cd tutorials/hello</code><br>
 <code>export COUGAAR_SOCIETY_PATH=`pwd`</code><br>
 <code>export COUGAAR_RUNTIME_PATH=$COUGAAR_SOCIETY_PATH/run</code><br>
-<code>ant  helloLifeCycle</code><br>
+<code>ant helloLifeCycle</code><br>
 <p>
 To run the hello application using the Unix shell script:
 <br>
 <code>cd $COUGAAR_RUNTIME_PATH</code><br>
 <code>cougaar -v $COUGAAR_SOCIETY_PATH/configs/HelloLifeCycleSociety.xml SingleNodeRuntime.xml</code><br>
 <p>
+<em>Due to some issues with the number of directory levels in TrimCougaar, you may need to execute the following variation:</em><br>
+<code>export COUGAAR_INSTALL_PATH=$WORK_SPACE/TrimCougaar/TrimCougaar</code><br>
+
 </body>
