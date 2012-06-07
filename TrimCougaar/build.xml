@@ -43,6 +43,7 @@
     <target name="update-external" description="Copy trimmed files from CIP to appropriate locations"
 		 depends="getcip" >
     	<echo>Copying lib jars</echo>
+    	<!-- Base Cougaar jars-->
 		<copy todir="lib" flatten="true" overwrite="true" preservelastmodified="true">
       		<fileset dir="${cougaar.install.path}/lib"
             	includes="bootstrap.jar,
@@ -60,7 +61,17 @@
       			webtomcat.jar,
 				webmicro.jar"/>
     	</copy>
+    	<!-- Logistics Cougaar jars-->
+		<copy todir="lib" flatten="true" overwrite="true" preservelastmodified="true">
+      		<fileset dir="${cougaar.install.path}/lib"
+            	includes="glm.jar,
+      			servicediscovery.jar,
+      			toolkit.jar,
+      			yp.jar"/>
+    	</copy>
+
     	<echo>Copying sys jars</echo>
+    	<!-- Base external jars-->
 		<copy todir="sys" flatten="true"  overwrite="true" preservelastmodified="true">
       		<fileset dir="${cougaar.install.path}/sys"
             	includes="log4j.jar,
@@ -69,6 +80,27 @@
       			xercesImpl.jar,
       			xml-apis.jar"/>
     	</copy>
+    	<!-- Logistics  external jars-->
+    	<echo>Copying Task Codegen jars</echo>
+    	<!-- Base external jars-->
+		<copy todir="clib" flatten="true"  overwrite="true" preservelastmodified="true">
+      		<fileset dir="${cougaar.install.path}/clib"
+            	includes="build.jar"/>
+    	</copy>
+		<copy todir="sys" flatten="true"  overwrite="true" preservelastmodified="true">
+      		<fileset dir="${cougaar.install.path}/sys"
+            	includes="concurrent.jar,
+				fesi-111.jar,
+      			hsqldb.jar,
+      			icu4j.jar,
+      			jena.jar,
+				jms-1.1.jar,
+      			juddi.jar,
+      			smack.jar,
+      			SNMP4J.jar,
+      			uddi4j.jar"/>
+    	</copy>
+
     	<echo>Copying configs/common files</echo>
 		<copy todir="configs/common" flatten="true"  overwrite="true" preservelastmodified="true">
       		<fileset dir="${cougaar.install.path}/configs/common"
@@ -89,6 +121,21 @@
           		data/webapps/ROOT/WEB-INF/web.xml,
           		data/work/README"/>
         </copy>
+    	
+    	<!-- logistics data files -->
+    	<!-- TODO figure out minimum set -->
+       	<echo>Copying Service Discovery files</echo>
+    	<copy todir="servicediscovery" flatten="false"  overwrite="true" preservelastmodified="true">
+          	<fileset dir="${cougaar.install.path}/servicediscovery"
+                includes=""/>
+        </copy>
+    	<!-- TODO figure out minimum set -->
+       	<echo>Copying YP files</echo>
+    	<copy todir="yp" flatten="false"  overwrite="true" preservelastmodified="true">
+          	<fileset dir="${cougaar.install.path}/yp"
+                includes=""/>
+        </copy>
+
        	<echo>Copying bin files</echo>
     	<!-- not getcip.sh, because we get src files which is not the default -->
     	<copy todir="bin" flatten="false" overwrite="true" preservelastmodified="true">
@@ -108,8 +155,13 @@
                 includes="tools.jar"/>
         </copy>
 		<echo message="Zipping source files" />
+    	<!-- Base  Cougaar source jars-->
 		<foreach target="zip-project-src-files" param="project" 
 			list="bootstrap,community,core,mtslinks,mtsstd,planning,profile,qos,qrs,tools,util,webmicro,webserver,webtomcat"/>
+    	<!-- logistics  Cougaar source jars-->
+		<foreach target="zip-project-src-files" param="project" 
+			list="glm,servicediscovery,toolkit,yp"/>
+
 
     </target>
 	
@@ -121,9 +173,14 @@
 	</taskdef>
 
 	<target name="zip-cougaar-src-files" description="creates zip of sources for cougaar sub-projects">
+    	<!-- Base  Cougaar source jars-->
 		<echo message="zipping source files" />
 		<foreach target="zip-project-src-files" param="project" 
 			list="bootstrap,community,core,mtslinks,mtsstd,planning,profile,qos,qrs,tools,util,webmicro,webserver,webtomcat"/>
+    	<!-- logistics  Cougaar source jars-->
+		<foreach target="zip-project-src-files" param="project" 
+			list="glm,servicediscovery,toolkit,yp"/>
+
 	</target>
 	
 	<target name="zip-project-src-files" description="Make zip files of Cougaar sources for debugging " >
