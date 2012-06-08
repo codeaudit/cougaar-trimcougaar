@@ -35,5 +35,6 @@
 	<classpathentry exported="true" kind="lib" path="sys/smack.jar"/>
 	<classpathentry exported="true" kind="lib" path="sys/SNMP4J.jar"/>
 	<classpathentry exported="true" kind="lib" path="sys/concurrent.jar"/>
+	<classpathentry exported="true" kind="lib" path="sys/junit.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
