@@ -157,7 +157,7 @@
 		<echo message="Zipping source files" />
     	<!-- Base  Cougaar source jars-->
 		<foreach target="zip-project-src-files" param="project" 
-			list="bootstrap,community,core,mtslinks,mtsstd,planning,profile,qos,qrs,tools,util,webmicro,webserver,webtomcat"/>
+			list="bootstrap,datafeeds,community,core,mtslinks,mtsstd,planning,profile,qos,qrs,tools,util,webmicro,webserver,webtomcat"/>
     	<!-- logistics  Cougaar source jars-->
 		<foreach target="zip-project-src-files" param="project" 
 			list="glm,servicediscovery,toolkit,yp"/>
