@@ -254,9 +254,9 @@
 		<mkdir dir="lib"/>
 		<copy todir="lib" flatten="true"  overwrite="true" preservelastmodified="true">
       		<fileset dir="${bundle.root}"
-               includes="demo-ping/lib/demo-ping.jar,
-                         demo-hello/lib/demo-hellop.jar,
-                         demo-mandelbrot/lib/demo-mandelbrot.jar"/>
+               includes="../ping/lib/demo-ping.jar,
+                         ../hello/lib/demo-hellop.jar,
+                         ../mandelbrot/lib/demo-mandelbrot.jar"/>
     	</copy>
 	</target>
 	
@@ -284,9 +284,9 @@
         <sequential>
             <subant target="@{target}" inheritall="false" failonerror="true">
                 <filelist dir="${bundle.root}"
-                    files="demo-hello/build.xml,
-                         demo-ping/build.xml,
-                         demo-mandelbrot/build.xml"/>
+                    files="../hello/build.xml,
+                         ../ping/build.xml,
+                         ../mandelbrot/build.xml"/>
                 <property name="bundle.build.output" value="${bundle.run}/lib"/>
                 <subant-elements/>
             </subant>
